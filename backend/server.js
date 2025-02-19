@@ -10,7 +10,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 const cors = require("cors");
-app.use(cors());
+
+app.use(cors({
+  origin: "https://crud-three-rho.vercel.app/", // ✅ Allow only your Vercel frontend
+  methods: "GET, POST, PUT, DELETE",
+  credentials: true, // ✅ Allow cookies or auth headers
+}));
+
 // API route to insert user data
 app.post("/api/adduser", (req, res) => {
   const { name, username, password, email } = req.body;
