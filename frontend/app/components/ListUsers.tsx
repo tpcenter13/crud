@@ -62,6 +62,7 @@ const ListUsers = () => {
   // Confirm delete
   const handleDeleteConfirm = async () => {
     if (!deleteUserId) return;
+    
 
     try {
       const response = await axios.delete(`http://localhost:8000/api/deleteuser/${deleteUserId}`);
@@ -102,9 +103,12 @@ const ListUsers = () => {
                 <td className="px-6 py-2 border">{user.username}</td>
                 <td className="px-6 py-2 border">{user.email}</td>
                 <td className="px-6 py-2 border">
-                  <Link href="#" className="btn btn-success px-3 py-1 mr-3 text-white drop-shadow-lg">
-                    Read
-                  </Link>
+                <Link href={`/read/${user.id}`} className="btn btn-success px-3 py-1 mr-3 text-white drop-shadow-lg">
+  Read
+</Link>
+
+
+
 
                   <Link
                     href={`/edit-user/${user.id}`} // Update this route based on your Next.js structure
