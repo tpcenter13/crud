@@ -21,22 +21,22 @@ export default function ViewUser() {
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const result = await axios.get(`http://localhost:8000/api/user/${id}`);
+                console.log("API response:", result.data);
+                setUser(result.data);
+                setLoading(false);
+            } catch (err) {
+                console.log("Something went wrong:", err);
+                setLoading(false);
+            }
+        };
+
         if (id) {
             fetchUser();
         }
     }, [id]);
-
-    const fetchUser = async () => {
-        try {
-            const result = await axios.get(`http://localhost:8000/api/user/${id}`);
-            console.log("API response:", result.data);
-            setUser(result.data);
-            setLoading(false);
-        } catch (err) {
-            console.log("Something went wrong:", err);
-            setLoading(false);
-        }
-    };
 
     return (
         <div className="flex flex-col items-center mt-10">

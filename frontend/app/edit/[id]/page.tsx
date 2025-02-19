@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -27,13 +27,7 @@ export default function EditUser() {
     const [error, setError] = useState<string | null>(null);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
-    useEffect(() => {
-        if (id) {
-            fetchUser();
-        }
-    }, [id]);
-
-    const fetchUser = async () => {
+    const fetchUser = useCallback(async () => {
         try {
             const result = await axios.get(`http://localhost:8000/api/user/${id}`);
             setUser(result.data);
@@ -43,7 +37,13 @@ export default function EditUser() {
             setError("Failed to fetch user data.");
             setLoading(false);
         }
-    };
+    }, [id]);
+
+    useEffect(() => {
+        if (id) {
+            fetchUser();
+        }
+    }, [id, fetchUser]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
