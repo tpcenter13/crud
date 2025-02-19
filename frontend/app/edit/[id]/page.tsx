@@ -33,7 +33,7 @@ export default function EditUser() {
             setUser(result.data);
             setFormData(result.data);
             setLoading(false);
-        } catch (err) {
+        } catch {
             setError("Failed to fetch user data.");
             setLoading(false);
         }
@@ -62,7 +62,7 @@ export default function EditUser() {
             const response = await axios.put(`http://localhost:8000/api/updateuser/${id}`, formData);
             setSuccessMessage("User updated successfully!");
             setUser(response.data);
-        } catch (err) {
+        } catch {
             setError("Failed to update user. Please try again.");
         } finally {
             setLoading(false);
