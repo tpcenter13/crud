@@ -111,7 +111,7 @@ const ListUsers = () => {
 
 
                   <Link
-                    href={`/edit-user/${user.id}`} // Update this route based on your Next.js structure
+                    href={`/edit/${user.id}`} // Update this route based on your Next.js structure
                     className="btn btn-info bg-blue-500 px-3 py-1 mr-3 text-white drop-shadow-lg"
                   >
                     Edit
