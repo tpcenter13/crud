@@ -62,7 +62,7 @@ app.delete("/api/deleteuser/:id", (req, res) => {
     });
   });
 
-  // API route to update user data
+  // API route to update user datas
 app.put("/api/updateuser/:id", (req, res) => {
     const userId = req.params.id;
     const { name, username, password, email } = req.body;
