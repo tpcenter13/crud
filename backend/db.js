@@ -1,21 +1,19 @@
-const mysql = require('mysql2'); // Use mysql2 for better performance
-require('dotenv').config(); // Load environment variables
-
+const mysql = require('mysql');
+ 
 const db = mysql.createConnection({
-  host: process.env.DB_HOST,   // Clever Cloud host
-  user: process.env.DB_USER,   // Clever Cloud username
-  password: process.env.DB_PASS, // Clever Cloud password
-  database: process.env.DB_NAME, // Clever Cloud database name
-  port: 3306,                  // Default MySQL port
+  host: 'bdnfyppmyhuekgygkgo5-mysql.services.clever-cloud.com', // XAMPP default
+  user: 'uitesgrbdgredt2g',      // Default user
+  password: 'y5TFAFvt5rcCsjowUjO1',      // No password (unless set)
+  database: 'bdnfyppmyhuekgygkgo5', // Replace with your actual DB name
 });
-
+ 
 // Connect to MySQL
 db.connect((err) => {
   if (err) {
     console.error('❌ Database connection failed:', err);
   } else {
-    console.log('✅ Connected to Clever Cloud MySQL');
+    console.log('✅ Connected to MySQL (XAMPP)');
   }
 });
-
+ 
 module.exports = db;
